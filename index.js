@@ -41,9 +41,11 @@ Toolkit.run(async (tools) => {
   let intersection = allowedLabels.filter((x) => appliedLabels.includes(x));
 
   if (mode === "exactly" && intersection.length !== count) {
-    tools.exit.failure(
-      `Label error. Requires exactly ${count} of: ${allowedLabels.join(", ")}`
-    );
+    const message = `Label error. Requires exactly ${count} of: ${allowedLabels.join(
+      ", "
+    )}`;
+    tools.outputs.message = message;
+    tools.exit.failure(message);
     return;
   }
 
